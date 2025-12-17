@@ -1,0 +1,112 @@
+<?php
+declare(strict_types=1);
+
+$options = [
+    [
+        [
+            'name' => 'sale_rent',
+            'label' => 'Buy/Rent',
+            'type' => 'hidden',
+            'default' => \App\Utils\CommonFunctions::getQueryParam('sale_rent', 'for_sale'),
+        ],
+        [
+            'name' => 'property_type',
+            'sub_name' => 'property_subtype',
+            'label' => 'Property Type',
+            'type' => 'property-type-filters',
+            'placeholder' => 'Any',
+        ],
+        [
+            'name' => 'list_selling_price_amount',
+            'label' => 'Price',
+            'type' => 'min-max',
+            'min_placeholder' => 'Min',
+            'max_placeholder' => 'Max',
+            'placeholder' => 'Any',
+            'min_label' => 'Min',
+            'max_label' => 'Max',
+            'prefix' => '€',
+            'visible' => [
+                'sale_rent' => [
+                    'for_sale',
+                ],
+            ],
+            'unit' => 'currency',
+        ],
+        [
+            'name' => 'list_rental_price_amount',
+            'label' => 'Price',
+            'type' => 'min-max',
+            'min_placeholder' => 'Min',
+            'max_placeholder' => 'Max',
+            'placeholder' => 'Any',
+            'min_label' => 'Min',
+            'max_label' => 'Max',
+            'prefix' => '€',
+            'visible' => [
+                'sale_rent' => [
+                    'for_rent',
+                ],
+            ],
+            'unit' => 'currency',
+        ],
+        [
+            'name' => 'internal_area_amount',
+            'label' => 'Covered Area',
+            'type' => 'min-max',
+            'placeholder' => 'Any',
+            'min_placeholder' => 'Min',
+            'max_placeholder' => 'Max',
+            'min_label' => 'Min',
+            'max_label' => 'Max',
+            'unit' => 'area',
+            'options' => 'area_amount',
+        ],
+        [
+            'name' => 'bedrooms_min',
+            'label' => 'Bedrooms',
+            'type' => 'radio',
+            'class' => 'qcf-radio-section--boxes',
+            'placeholder' => 'Any',
+            'options' => 'four_bed_baths_min',
+        ],
+        [
+            'name' => 'bathrooms_min',
+            'label' => 'Bathrooms',
+            'type' => 'radio',
+            'class' => 'qcf-radio-section--boxes',
+            'placeholder' => 'Any',
+            'options' => 'four_bed_baths_min',
+        ],
+        [
+            'name' => 'furnished',
+            'label' => 'Furnished',
+            'type' => 'radio',
+            'options' => array_merge(['' => 'Any'], \App\Connector\Property::getFieldList('furnished')),
+            'placeholder' => 'Any',
+        ],
+        [
+            'name' => 'characteristics',
+            'label' => 'Other Features',
+            'type' => 'multi-checkbox',
+            'separate' => true,
+            'options' => [
+                'air_condition' => 'Air Condition',
+                'elevator' => 'Elevator',
+                'parking_min' => 'Garage',
+                'common_swimming_pool' => 'Swimming Pool',
+                'private_swimming_pool' => 'Private Swimming Pool',
+                'heating_type_not_empty' => 'Heating',
+                'garden_area_amount_min' => 'Garden',
+            ],
+            'placeholder' => 'Any',
+        ],
+        [
+            'name' => 'search',
+            'label' => 'Mostrar resultados',
+            'type' => 'button',
+            'class' => 'filter-submit-group',
+            'field_class' => 'btn btn-primary filter-submit-btn',
+        ],
+    ],
+];

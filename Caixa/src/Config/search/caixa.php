@@ -1,0 +1,133 @@
+<?php
+declare(strict_types=1);
+
+$options = [
+    [
+        [
+            'name' => 'sale_rent',
+            'label' => 'Buy/Rent',
+            'type' => 'hidden',
+            'default' => \App\Utils\CommonFunctions::getQueryParam('sale_rent', 'for_sale'),
+        ],
+        [
+            'name' => 'property_type',
+            'sub_name' => 'property_subtype',
+            'label' => 'Tipo de inmueble',
+            'type' => 'property-type-filters',
+            'placeholder' => 'Todo',
+        ],
+        [
+            'name' => 'list_selling_price_amount',
+            'label' => 'Precio',
+            'min_placeholder' => 'Mínimo',
+            'max_placeholder' => 'Máximo',
+            'min_label' => 'Desde',
+            'max_label' => 'Hasta',
+            'type' => 'min-max',
+            'placeholder' => 'Todo',
+            'prefix' => '€',
+            'visible' => [
+                'sale_rent' => [
+                    'for_sale',
+                ],
+            ],
+            'unit' => 'currency',
+        ],
+        [
+            'name' => 'list_rental_price_amount',
+            'label' => 'Precio',
+            'type' => 'min-max',
+            'min_placeholder' => 'Mínimo',
+            'max_placeholder' => 'Máximo',
+            'placeholder' => 'Todo',
+            'min_label' => 'Desde',
+            'max_label' => 'Hasta',
+            'prefix' => '€',
+            'visible' => [
+                'sale_rent' => [
+                    'for_rent',
+                ],
+            ],
+            'unit' => 'currency',
+        ],
+        [
+            'name' => 'total_area_amount',
+            'label' => 'Superfície (metros útiles)',
+            'type' => 'min-max',
+            'placeholder' => 'Todo',
+            'min_placeholder' => 'Mínimo',
+            'max_placeholder' => 'Máximo',
+            'min_label' => 'Desde',
+            'max_label' => 'Hasta',
+            'unit' => 'area',
+            'options' => 'area_amount',
+        ],
+        [
+            'name' => 'bedrooms_min',
+            'label' => 'Habitaciones',
+            'type' => 'radio',
+            'class' => 'qcf-radio-section--boxes',
+            'placeholder' => 'Todo',
+            'options' => 'caixa_bed_baths_min',
+        ],
+        [
+            'name' => 'bathrooms_min',
+            'label' => 'Baños',
+            'type' => 'radio',
+            'class' => 'qcf-radio-section--boxes',
+            'placeholder' => 'Todo',
+            'options' => 'caixa_bed_baths_min',
+        ],
+        [
+            'name' => 'building_state',
+            'label' => 'Estado',
+            'type' => 'multi-checkbox',
+            'separate' => true,
+            'options' => [
+                'new_build' => 'Obra Nueva',
+            ],
+            'placeholder' => 'Todo',
+        ],
+        [
+            'name' => 'furnished',
+            'label' => 'Equipamiento',
+            'type' => 'radio',
+            'options' => array_merge(['' => 'Todo'], \App\Connector\Property::getFieldList('furnished')),
+            'placeholder' => 'Todo',
+        ],
+        [
+            'name' => 'characteristics',
+            'label' => 'Características',
+            'type' => 'multi-checkbox',
+            'separate' => true,
+            'options' => [
+                'air_condition' => 'Aire acondicionado',
+                'elevator' => 'Ascensor',
+                'parking_min' => 'Garaje',
+                'common_swimming_pool' => 'Piscina Común',
+                'private_swimming_pool' => 'Piscina privada',
+                'garden_area_amount_min' => 'Jardín',
+                'custom_balcony' => 'Balcón',
+            ],
+            'placeholder' => 'Todo',
+        ],
+        [
+            'name' => 'otros-filtros',
+            'label' => 'Otros filtros',
+            'type' => 'multi-checkbox',
+            'separate' => true,
+            'options' => [
+                'custom_bank_owned' => 'De bancos',
+                'custom_discounted' => 'Rebajados',
+            ],
+            'placeholder' => 'Todo',
+        ],
+        [
+            'name' => 'search',
+            'label' => 'Mostrar resultados',
+            'type' => 'button',
+            'class' => 'filter-submit-group',
+            'field_class' => 'btn btn-primary btn-pill filter-submit-btn',
+        ],
+    ],
+];
